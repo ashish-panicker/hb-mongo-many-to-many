@@ -13,17 +13,32 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		EntityManager em =  HibernateOGMUtil.getEntityManagerFactory().createEntityManager();
-		Set<Course> courses = new HashSet<Course>();
-		courses.add(new Course("Maths"));
-		courses.add(new Course("Computer Science"));
-
-		Student student1 = new Student("Eswar", courses);
-		Student student2 = new Student("Joe", courses);
+		Set<Course> courses = new HashSet<>();
+		Set<Student> students = new HashSet<>(0);
+		
+		Course c1 = new Course("maths");
+		Course c2 = new Course("English");
+		
+		Student s1 = new Student("Carl");
+		Student s2 = new Student("Joseph");
+		
+		courses.add(c1);
+		courses.add(c2);
+		
+		students.add(s1);
+		students.add(s2);
+		
+		c1.setStudents(students);
+		c2.setStudents(students);
+		
+		s1.setCourses(courses);
+		s2.setCourses(courses);
+		
 		
 		em.getTransaction().begin();
 		
-		em.persist(student1);
-		em.persist(student2);
+		em.persist(s1);
+		em.persist(s2);
 		
 		em.getTransaction().commit();
 		

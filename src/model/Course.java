@@ -1,8 +1,13 @@
 package model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,6 +18,9 @@ public class Course {
 	@GeneratedValue
 	private long courseId;
 	private String courseName;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	private Set<Student> students = new HashSet<>(0);
 
 	public Course() {
 	}
@@ -35,6 +43,14 @@ public class Course {
 
 	public void setCourseName(String courseName) {
 		this.courseName = courseName;
+	}
+
+	public Set<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(Set<Student> students) {
+		this.students = students;
 	}
 
 }

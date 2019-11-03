@@ -20,7 +20,7 @@ public class Student {
 	private String studentName;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
-	private Set<Course> courses = new HashSet<Course>(0);
+	private Set<Course> courses = new HashSet<>(0);
 
 	public Student() {
 	}
@@ -49,7 +49,6 @@ public class Student {
 	public void setStudentName(String studentName) {
 		this.studentName = studentName;
 	}
-
 	
 	public Set<Course> getCourses() {
 		return courses;
